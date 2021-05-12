@@ -19,6 +19,7 @@
         "@ethersproject/experimental": "^5.0.1",
         "@fontsource/dm-sans": "^4.2.2",
         "@fullhuman/postcss-purgecss": "^4.0.3",
+        "@gnosis.pm/safe-apps-react-sdk": "^2.2.0",
         "@headlessui/react": "^1.0.0",
         "@hot-loader/react-dom": "^17.0.1",
         "@popperjs/core": "^2.4.4",
@@ -173,6 +174,7 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "@lufycz/sushi-data": "^2.0.0-canary-21"
+        "@lufycz/sushi-data": "^2.0.0-canary-21",
+        "@gnosis.pm/safe-apps-web3-react": "^0.1.2"
     }
 }

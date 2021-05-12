@@ -23,6 +23,7 @@ import TransactionUpdater from './state/transactions/updater'
 import UserUpdater from './state/user/updater'
 import ThemeProvider, { ThemedGlobalStyle } from './theme'
 import getLibrary from './utils/getLibrary'
+import SafeProvider from '@gnosis.pm/safe-apps-react-sdk'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
@@ -67,19 +68,21 @@ ReactDOM.render(
     <StrictMode>
         <Web3ReactProvider getLibrary={getLibrary}>
             <Web3ProviderNetwork getLibrary={getLibrary}>
-                <Blocklist>
-                    <Provider store={store}>
-                        <Updaters />
-                        <ThemeProvider>
-                            <ThemedGlobalStyle />
-                            <KashiProvider>
-                                <Router>
-                                    <App />
-                                </Router>
-                            </KashiProvider>
-                        </ThemeProvider>
-                    </Provider>
-                </Blocklist>
+                <SafeProvider>
+                    <Blocklist>
+                        <Provider store={store}>
+                            <Updaters />
+                            <ThemeProvider>
+                                <ThemedGlobalStyle />
+                                <KashiProvider>
+                                    <Router>
+                                        <App />
+                                    </Router>
+                                </KashiProvider>
+                            </ThemeProvider>
+                        </Provider>
+                    </Blocklist>
+                </SafeProvider>
             </Web3ProviderNetwork>
         </Web3ReactProvider>
     </StrictMode>,

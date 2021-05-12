@@ -1,5 +1,5 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@sushiswap/sdk'
-import { fortmatic, injected, lattice, portis, torus, walletconnect, walletlink } from '../connectors'
+import { fortmatic, injected, lattice, portis, torus, walletconnect, walletlink, gnosis } from '../connectors'
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
@@ -350,6 +350,15 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
         description: 'Login using Torus hosted wallet',
         href: null,
         color: '#315CF5',
+        mobile: true
+    },
+    Gnosis: {
+        connector: gnosis,
+        name: 'Gnosis',
+        iconName: 'gnosisIcon.png',
+        description: 'Login using Gnosis Safe',
+        href: null,
+        color: '#4A6C9B',
         mobile: true
     }
 }

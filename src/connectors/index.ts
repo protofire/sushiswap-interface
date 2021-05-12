@@ -8,6 +8,8 @@ import { TorusConnector } from '@web3-react/torus-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { Web3Provider } from '@ethersproject/providers'
+import { SafeAppConnector } from '@gnosis.pm/safe-apps-web3-react'
+
 // import { BscConnector } from '@binance-chain/bsc-connector'
 
 const RPC = {
@@ -35,6 +37,8 @@ const RPC = {
     [ChainId.OKEX]: 'https://exchainrpc.okex.org',
     [ChainId.OKEX_TESTNET]: 'https://exchaintestrpc.okex.org'
 }
+
+export const gnosis = new SafeAppConnector()
 
 export const network = new NetworkConnector({
     defaultChainId: 1,
