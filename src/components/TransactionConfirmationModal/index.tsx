@@ -84,13 +84,9 @@ function TransactionSubmittedContent({
                     <Text fontWeight={500} fontSize={20}>
                         Transaction Submitted
                     </Text>
-                    {chainId && hash && (
-                        <ExternalLink href={getExplorerLink(chainId, hash, 'transaction')}>
-                            <Text fontWeight={500} fontSize={14} color={theme.primary1}>
-                                View on explorer
-                            </Text>
-                        </ExternalLink>
-                    )}
+                    <Text fontWeight={500} fontSize={14} color={theme.primary1}>
+                        You can see your transaction in the safe <strong>Transactions</strong> section
+                    </Text>
                     <ButtonPrimary onClick={onDismiss} style={{ margin: '20px 0 0 0' }}>
                         <Text fontWeight={500} fontSize={20}>
                             Close
