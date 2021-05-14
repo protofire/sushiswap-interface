@@ -290,7 +290,6 @@ export default function Swap() {
         approval,
         sdk.txs,
         createApproveTx,
-        ,
         tradeToConfirm,
         showConfirm,
         recipient,
