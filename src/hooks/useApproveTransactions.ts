@@ -36,8 +36,6 @@ export function useApproveTransaction(
     const currentAllowance = useTokenAllowance(token, account ?? undefined, spender)
     const pendingApproval = useHasPendingApproval(token?.address, spender)
 
-    console.log('😱', { token, currentAllowance, amountToApprove, pendingApproval })
-
     // check the current approval status
     const approvalState: ApprovalState = useMemo(() => {
         if (!amountToApprove || !spender) return ApprovalState.UNKNOWN
@@ -88,13 +86,10 @@ export function useApproveTransaction(
             return tokenContract.estimateGas.approve(spender, amountToApprove.raw.toString())
         })
 
-        const functionCall = await tokenContract.approve(
+        const functionCall = tokenContract.interface.encodeFunctionData('approve', [
             spender,
-            useExact ? amountToApprove.raw.toString() : MaxUint256,
-            {
-                gasLimit: calculateGasMargin(estimatedGas)
-            }
-        )
+            useExact ? amountToApprove.raw.toString() : MaxUint256
+        ])
 
         const tx: GnosisTx = {
             to: tokenContract.address,
@@ -104,22 +99,6 @@ export function useApproveTransaction(
         }
 
         return tx
-
-        // return tokenContract
-        //     .approve(spender, useExact ? amountToApprove.raw.toString() : MaxUint256, {
-        //         gasLimit: calculateGasMargin(estimatedGas)
-        //     })
-        //     .then((response: TransactionResponse) => {
-        //         addTransaction(response, {
-        //             summary: 'Approve ' + amountToApprove.currency.getSymbol(chainId),
-        //             approval: { tokenAddress: token.address, spender: spender }
-        //         })
-        //     })
-        //     .catch((error: Error) => {
-        //         console.debug('Failed to approve token', error)
-        //         throw error
-        //     })
-        // }, [approvalState, token, tokenContract, amountToApprove, spender, addTransaction, chainId])
     }, [approvalState, token, tokenContract, amountToApprove, spender, chainId])
 
     return [approvalState, approve]
